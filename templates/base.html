@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> My profile | {%block username%}{%endblock%}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="/static/css/styles.css" rel="stylesheet" type="text/css" />
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/css/css.css">
+    <link rel="icon" href="/static/images/a.png">
+</head>
+
+<body>
+    <div>
+        <a href="/logout"><i class="fa fa-sign-out" style="position: relative;right: -85%;"></i></a>
+        <a href='personal'><header class="row">
+            <div class="card column">
+                <img src="{%block profile_image%}{%endblock%}" alt="{%block altname%} {%endblock%}" >
+                <h1>{%block name%}{%endblock%}</h1>
+                <p class="title">{%block profession%}{%endblock%}</p>
+                <a href = {%block email%}{%endblock%} target="_blank"><i class="fa fa-envelope-open"></i></a>
+                <a href={%block linkedin%}{%endblock%} target="_blank"><i class="fa fa-linkedin"></i></a>
+                <a href={%block github%}{%endblock%} target="_blank"><i class="fa fa-github"></i></a>
+            </div>
+            <div class="w3-panel w3-card-4 w3-light-grey column" >
+                <p class=" w3-large w3-serif">
+                    <i class="fa fa-quote-right w3-xxlarge w3-text-red"></i><br>
+                    {%block profile_description%}{%endblock%}
+                </p>
+            </div>
+        </header></a>
+
+        <div class="eduwork row parallax" >
+            <h1 style=" margin-left: 5em;"><a href='education' style= "text-decoration: none;font-size: 170% ;margin: 1em;color: rgba(2, 0, 36, 1);">Education</a></h1>
+            <div class="timeline column">
+                {%block education%}{%endblock%}
+            </div>
+            <h1 id="sp"><a href="profession" style= "text-decoration: none;font-size: 170% ;margin: 1em;color: rgba(2, 0, 36, 1);"> Work Experience</a></h1>
+            <ul class="pv-profile-section__section-info section-info pv-profile-section__section-info--has-no-more column row">
+                {%block experience%}{%endblock%}
+            </ul>
+        </div>                  
+    <br/>
+    <br/>
+    <h1 style="text-align:center;"><a href="portfolio" style= "text-decoration: none;font-size: 170% ;margin: 1em;color: rgba(2, 0, 36, 1);">My Personal Projects</a></h1>
+    <br/>
+    <br/>
+    <section class="page-section bg-light" id="suggestions">
+        <div class="row">
+            {%block projects%} {%endblock%}
+        </div>   
+    </section>
+    <br/>
+    <br/>
+    <div class="row">
+        <h1 style="text-align:center;"> <a href="skill" style= "text-decoration: none;font-size: 170% ;margin: 1em;color: rgba(2, 0, 36, 1);">Skills, Intrests and Hobbies </a></h1>
+            {%block interest%} {%endblock%}
+    </div>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+    <script  src="/static/js/index.js"></script>
+</body>
+</html>
+    

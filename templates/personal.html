@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> My profile | {{user.first_name}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="/static/css/styles.css" rel="stylesheet" type="text/css" />
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/css/css.css">
+    <link rel="icon" href="/static/images/a.png">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+        <link rel="stylesheet" href="/static/login assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/static/login assets/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="/static/login assets/css/form-elements.css">
+        <link rel="stylesheet" href="/static/login assets/css/style.css">
+</head>
+
+<div class="row">
+    <div class="col-sm-8" style="margin-left: 17%;margin-bottom:5%">
+        <div class="form-box">
+            <div class="form-top">
+                <div class="form-top-left">
+                    <h3>Update your Personal Information</h3>
+                </div>
+                <div class="form-top-right">
+                    <i class="fa fa-pencil"></i>
+                </div>
+            </div>
+            <div class="form-bottom">
+                <form role="form" action="" method="POST" class="registration-form" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label  for="first_name">First Name</label>
+                        <input type="text" name="first_name" placeholder="First Name" class="form-first-name form-control" id="first_name" value={{user.first_name}}>
+                    </div>
+                    <div class="form-group">
+                        <label  for="last_name">Last Name</label>
+                        <input type="text" name="last_name" placeholder="Last Name" class="form-first-name form-control" id="last_name" value={{user.last_name}}>
+                    </div>
+                    <div class="form-group">
+                        <label  for="email">email</label>
+                        <input type="text" name="email" placeholder="Em@il" class="form-first-name form-control" id="email" value={{user.email}}>
+                    </div>
+                    <div class="form-group">
+                        <label  for="password">Password</label>
+                        <input type="text" name="password" placeholder="Your New Password" class="form-first-name form-control" id="password" value={{user.password}}>
+                    </div>
+                    <div class="form-group">
+                        <label  for="profession">Profession</label>
+                        <input type="text" name="profession" placeholder="Please Give Your Profession" class="form-first-name form-control" id="profession" 
+                        {%if user.profession is not none%} value="{{user.profession}}" {%endif%}>
+                    </div>
+                    <div class="form-group">
+                        <label  for="linkedin">linkedin</label>
+                        <input type="text" name="linkedin" placeholder="Please Give Your linkedin" class="form-first-name form-control" id="linkedin" 
+                        {%if user.linkedin is not none%} value="{{user.linkedin}}" {%endif%}>
+                    </div>
+                    <div class="form-group">
+                        <label  for="github">github</label>
+                        <input type="text" name="github" placeholder="Please Give Your github" class="form-first-name form-control" id="github" 
+                        {%if user.github is not none%} value="{{user.github}}" {%endif%}>
+                    </div>
+                    <div class="form-group">
+                        <label  for="description">description</label>
+                        <input type="text" name="description" placeholder="Please Give Your description" class="form-first-name form-control" id="description" 
+                        {%if user.description is not none%} value="{{user.description}}" {%endif%}>
+                    </div>
+                    <div class="form-group">
+                        <label  for="location">Location</label>
+                        <input type="text" name="location" placeholder="Where do You live ?" class="form-first-name form-control" id="location" 
+                        {%if user.location is not none%} value="{{user.location}}" {%endif%}>
+                    </div>
+                    <div class="form-group">
+                        <label  for="picture">Image</label>
+                        <input type="file" name="picture" accept=".jpg, .jpeg, .png">
+                    </div>
+                    <button type="submit" class="btn" name="add">Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

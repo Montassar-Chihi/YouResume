@@ -1,0 +1,86 @@
+{% extends "insidebase.html" %}
+{%block altname%}
+    {{user.first_name}}{{user.last_name}}
+{%endblock%}
+{%block username%}
+    {{user.first_name}}
+{%endblock%}
+{%block name%}
+    {{user.first_name}} {{user.last_name}}
+{%endblock%}
+{%block profile_image%}{{"/"+user.picture}}{%endblock%}
+{%block profession%} 
+    {{user.profession}}
+{%endblock%}
+{%block email%}
+    {{"mailto:"+user.email}}
+{%endblock%}
+{%block linkedin%}
+    {{user.linkedin}}
+{%endblock%}
+{%block github%}
+    {{user.github}}
+{%endblock%}
+{%block profile_description%}
+    {{user.description}}
+{%endblock%}
+{%block form%}
+    <div class="row">
+        <div class="col-sm-8" style="margin-left: 17%;margin-bottom:5%">
+            <div class="form-box">
+                <div class="form-top">
+                    <div class="form-top-left">
+                        {%if session['add_profession']==True%}
+                            <h3>Add a Professional experience</h3>
+                        {%else%}
+                            <h3>Update/delete a Professional experience</h3>
+                        {%endif%}
+                    </div>
+                    <div class="form-top-right">
+                        <i class="fa fa-pencil"></i>
+                    </div>
+                </div>
+                <div class="form-bottom">
+                    <form role="form" action="" method="POST" class="registration-form">
+                        <div class="form-group">
+                            <label class="sr-only" for="title">Title</label>
+                            <input type="text" name="title" placeholder="Your Title" class="form-first-name form-control" id="title"
+                            {%if session['delup_profession'] == True %}value="{{profession.title}}" {%endif%}>
+                        </div>
+                        <div class="form-group" >
+                            <label class="sr-only" for="company">Company</label>
+                            <input type="text" name="company" placeholder="Company your worked for" class="form-email form-control" id="company" 
+                            {%if session['delup_profession'] == True %} value="{{profession.company}}" {%endif%}>
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only" for="description">Description</label>
+                            <input type="text" name="description" placeholder="Brief description" class="form-last-name form-control" id="description"
+                            {%if session['delup_profession'] == True %} value="{{profession.description}}" {%endif%}>
+                        </div>
+                        <div class="form-group" >
+                            <label class="sr-only" for="started">Started at</label>
+                            <input type="date" name="started" placeholder="when did you start" class="form-control" id="started" 
+                            {%if session['delup_profession'] == True %} value="{{profession.started_at}}" {%endif%}>
+                        </div>
+                        <div class="form-group" >
+                            <label class="sr-only" for="finished">finished at</label>
+                            <input type="date" name="finished" placeholder="when did you finish" class="form-control" id="finished" 
+                            {%if session['delup_profession'] == True %} value="{{profession.finished_at}}" {%endif%}>
+                        </div>
+                        <div class="form-group" >
+                            <label class="sr-only" for="place">Location</label>
+                            <input type="text" name="place" placeholder="place of the company you worked for" class="form-control" id="place" 
+                            {%if session['delup_profession'] == True %} value="{{profession.place}}" {%endif%}>
+                        </div>
+                        {%if session['add_profession']==True%}
+                            <button type="submit" class="btn" name="add">Add to your Professional Experience</button>
+                        {%else%}
+                            <button type="submit" class="btn" name="delete">Delete this experience</button>
+                            <button type="submit" class="btn" name="update">Update this experience</button>
+                        {%endif%}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{%endblock%}

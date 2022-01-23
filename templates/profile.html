@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+{%block altname%}
+    {{user.first_name}}{{user.last_name}}
+{%endblock%}
+{%block username%}
+    {{user.first_name}}
+{%endblock%}
+{%block name%}
+    {{user.first_name}} {{user.last_name}}
+{%endblock%}
+{%block profile_image%}/{{user.picture}}{%endblock%}
+{%block profession%} 
+    {{user.profession}}
+{%endblock%}
+{%block email%}
+    {{"mailto:"+user.email}}
+{%endblock%}
+{%block linkedin%}
+    {{user.linkedin}}
+{%endblock%}
+{%block github%}
+    {{user.github}}
+{%endblock%}
+{%block profile_description%}
+    {{user.description}}
+{%endblock%}
+{%block education%}
+    {%if education is defined and education|length > 0%}
+        {% for school in education %}
+            {% if loop.index%2 ==0 %}
+                <div class="container right"> 
+                    <div class="content">
+                        <h2><a style="font-size:100%;" href={{"education/"+ school.education_id|string}}> {{school.place}} </a></h2>
+                        <p>{{school.started_at}} / {{school.finished_at}}</p>
+                    </div>
+                </div>
+            {%else%}
+                <div class="container left">
+                    <div class="content">
+                        <h2><a style="font-size:100%;" href={{"education/"+ school.education_id|string}}> {{school.place}} </a></h2>
+                        <p>{{school.started_at}} / {{school.finished_at}}</p>
+                    </div>
+                </div>
+            {%endif%}
+        {% endfor %}
+    {%endif%}
+{%endblock%}
+{%block experience%}
+    {%if  profession is defined and profession|length > 0%}
+        {% for experience in profession %}
+            
+                <li id="ember727" class="pv-entity__position-group-pager pv-profile-section__list-item ember-view">        
+                    <section id="1588190871" class="pv-profile-section__card-item-v2 pv-profile-section pv-position-entity ember-view">  
+                        <div class="display-flex justify-space-between full-width">
+                            <div class="display-flex flex-column full-width">
+                                <div class="pv-entity__summary-info pv-entity__summary-info--background-section ">
+                                    <h3 class="t-16 t-black t-bold"><a style="font-size:100%;" href={{"profession/"+ experience.profession_id|string}}>{{experience.title}} </a></h3>
+                                    <p class="pv-entity__secondary-title t-14 t-black t-normal">
+                                        {{experience.company}}
+                                    </p>
+                                    <div class="display-flex">
+                                        <h4 class="pv-entity__date-range t-14 t-black--light t-normal">
+                                        <span>{{experience.started_at}} / {{experience.finished_at}}</span>
+                                        </h4>
+                                    </div>
+                                    <h4 class="pv-entity__location t-14 t-black--light t-normal block">
+                                        <span>{{experience.place}}</span>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </li>
+            
+        {%endfor%}
+    {%endif%}
+{%endblock%}
+{%block projects%} 
+{%if  portfolio is defined and portfolio|length > 0%}
+    {% for project in portfolio %}
+        <div class='col-lg-4 col-sm-6 mb-4' style="display: inline-block;margin-left: 10%;">
+            <h3 class="section-heading text-uppercase">
+                <a style= "text-decoration: none;font-size: 100% ;margin: 1em;color: rgba(2, 0, 36, 1);" 
+                    href={{"portfolio/"+ project.portfolio_id|string}}>
+                    {{project.name}}
+                </a>
+            </h3>
+            <div class='suggestions-item'>
+                <a class='suggestions-link' data-toggle='modal'  target="_blank" href={{project.url}}>
+                    <div class='suggestions-hover'>
+                        <div class='suggestions-hover-content'><i class="fa fa-angle-double-right fa-3x"></i></div>
+                    </div>
+                    <img class='img-fluid' style="width:100%;" src='/static/images/project.jpg' alt='...' />
+                </a>                    
+            </div>
+        </div>
+    {%endfor%}
+{%endif%}
+{%endblock%}
+{%block interest%} 
+    {%if  skill is defined and skill|length > 0%}
+    {% set j=0 %}
+        {% for soh in skill %}
+            {% if j<12 %}
+            <div class="column">
+                {%if soh.skill_type == "skill" %}
+                    <div class="skills"> &nbsp; &nbsp;<a style="font-size:100%;" href={{"skill/"+ soh.skill_id|string}}>{{soh.name}} </a></div>
+                {%else%}
+                    <div class="interests">&nbsp; &nbsp;<a style="font-size:100%;" href={{"skill/"+ soh.skill_id|string}}>{{soh.name}} </a></div>
+                {%endif%}
+            </div>
+            {%else%}
+                <div class="column">
+                    {%if soh.skill_type == "skill" %}
+                        <div class="skills"> &nbsp; &nbsp;<a style="font-size:100%;" href={{"skill/"+ soh.skill_id|string}}>{{soh.name}} </a> </div>
+                    {%else%}
+                        <div class="interests">&nbsp; &nbsp;<a style="font-size:100%;" href={{"skill/"+ soh.skill_id|string}}>{{soh.name}} </a></div>
+                    {%endif%}
+                </div>
+            {%endif%}
+        {%endfor%}
+    {%endif%}
+{%endblock%}

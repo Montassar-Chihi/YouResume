@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Profile | {%block username%}{%endblock%}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="/static/css/styles.css" rel="stylesheet" type="text/css" />
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/css/css.css">
+    <link rel="icon" href="/static/images/a.png">
+</head>
+
+<body>
+    <div>
+        <header class="row">
+            <div class="card column">
+                <img src="{%block profile_image%}{%endblock%}" alt="{%block altname%} {%endblock%}" >
+                <h1>{%block name%}{%endblock%}</h1>
+                <p class="title">{%block profession%}{%endblock%}</p>
+                <a href = {%block email%}{%endblock%} target="_blank"><i class="fa fa-envelope-open"></i></a>
+                <a href = {%block linkedin%}{%endblock%} target="_blank"><i class="fa fa-linkedin"></i></a>
+                <a href = {%block github%}{%endblock%} target="_blank"><i class="fa fa-github"></i></a>
+            </div>
+            <div class="w3-panel w3-card-4 w3-light-grey column" >
+                <p class=" w3-large w3-serif">
+                    <i class="fa fa-quote-right w3-xxlarge w3-text-red"></i><br>
+                    {%block profile_description%}{%endblock%}
+                </p>
+            </div>
+        </header>
+
+        <div class="eduwork row parallax" >
+            {%block education%}{%endblock%}
+            {%block experience%}{%endblock%}
+        </div>                  
+        {%block projects%} {%endblock%}
+        {%block interest%} {%endblock%}
+    
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+    <script  src="/static/js/index.js"></script>
+</body>
+</html>
+    

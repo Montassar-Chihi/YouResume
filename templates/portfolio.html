@@ -1,0 +1,71 @@
+{% extends "insidebase.html" %}
+{%block altname%}
+    {{user.first_name}}{{user.last_name}}
+{%endblock%}
+{%block username%}
+    {{user.first_name}}
+{%endblock%}
+{%block name%}
+    {{user.first_name}} {{user.last_name}}
+{%endblock%}
+{%block profile_image%}{{"/"+user.picture}}{%endblock%}
+{%block profession%} 
+    {{user.profession}}
+{%endblock%}
+{%block email%}
+    {{"mailto:"+user.email}}
+{%endblock%}
+{%block linkedin%}
+    {{user.linkedin}}
+{%endblock%}
+{%block github%}
+    {{user.github}}
+{%endblock%}
+{%block profile_description%}
+    {{user.description}}
+{%endblock%}
+{%block form%}
+    <div class="row">
+        <div class="col-sm-8" style="margin-left: 17%;margin-bottom:5%">
+            <div class="form-box">
+                <div class="form-top">
+                    <div class="form-top-left">
+                        {%if session['add_portfolio']==True%}
+                            <h3>Add a project</h3>
+                        {%else%}
+                            <h3>Update/Delete a project</h3>
+                        {%endif%}
+                    </div>
+                    <div class="form-top-right">
+                        <i class="fa fa-pencil"></i>
+                    </div>
+                </div>
+                <div class="form-bottom">
+                    <form role="form" action="" method="POST" class="registration-form">
+                        <div class="form-group">
+                            <label class="sr-only" for="name">Name</label>
+                            <input type="text" name="name" placeholder="Name of your Project" class="form-first-name form-control" id="name"
+                            {%if session['delup_portfolio'] == True %} value="{{portfolio.name}}" {%endif%}>
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only" for="description">Description</label>
+                            <input type="text" name="description" placeholder="Description of your project" class="form-last-name form-control" id="description"
+                            {%if session['delup_portfolio'] == True %} value="{{portfolio.description}}" {%endif%}>
+                        </div>
+                        <div class="form-group" >
+                            <label class="sr-only" for="url">Link</label>
+                            <input type="text" name="url" placeholder="Link to your project" class="form-email form-control" id="url" 
+                            {%if session['delup_portfolio'] == True %} value="{{portfolio.url}}" {%endif%}>
+                        </div>
+                        {%if session['add_portfolio']==True%}
+                            <button type="submit" class="btn" name="add">Add the project</button>
+                        {%else%}
+                            <button type="submit" class="btn" name="delete">Delete this project</button>
+                            <button type="submit" class="btn" name="update">Update this project</button>
+                        {%endif%}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{%endblock%}

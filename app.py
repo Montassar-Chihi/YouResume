@@ -619,7 +619,7 @@ def add_education(user_id):
             
             
       if request.method == "POST":
-            if "add" in request.form:
+            if "add_project" in request.form:
                   place = request.form.get("place")
                   started_at = request.form.get("started")
                   finished_at = request.form.get("finished")

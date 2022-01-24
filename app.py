@@ -9,7 +9,7 @@ from flask_mongoengine import MongoEngine
 app = Flask(__name__)
 
 app.config['MONGODB_DB'] = 'resume'
-app.config['MONGODB_HOST'] = 'localhost'
+app.config['MONGODB_HOST'] = 'mongodb+srv://montassar:atlasisthebest@resume.qn1of.mongodb.net/resume?retryWrites=true&w=majority'
 app.config['MONGODB_PORT'] = 27017
 
 app.config['SECRET_KEY'] = 'ZU83RZ3CR31B055'

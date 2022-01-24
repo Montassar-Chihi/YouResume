@@ -701,7 +701,11 @@ def personal(user_id):
                         location = request.form.get("location")
                         if 'picture' in request.files:
                               file = request.files['picture']
-                              if file.filename == '':
+                              if file.filename == '' and password == None :
+                                    User.objects(user_id=user_id).update(first_name = first_name,last_name = last_name,email = email,profession = profession,
+                                                                  linkedin = linkedin,github = github,description=description,
+                                                                  location=location)
+                              elif file.filename == '' and password != None:
                                     User.objects(user_id=user_id).update(first_name = first_name,last_name = last_name,email = email,
                                                                   password= generate_password_hash(password),profession = profession,
                                                                   linkedin = linkedin,github = github,description=description,
@@ -714,9 +718,14 @@ def personal(user_id):
                                                                   password= generate_password_hash(password),picture = picture,profession = profession,
                                                                   linkedin = linkedin,github = github,description=description,
                                                                   location=location)
-                        else:
+                              
+                        elif password != None:
                               User.objects(user_id=user_id).update(first_name = first_name,last_name = last_name,email = email,
                                                                   password= generate_password_hash(password),profession = profession,
+                                                                  linkedin = linkedin,github = github,description=description,
+                                                                  location=location)
+                        else :
+                              User.objects(user_id=user_id).update(first_name = first_name,last_name = last_name,email = email,profession = profession,
                                                                   linkedin = linkedin,github = github,description=description,
                                                                   location=location)
                         return redirect(url_for("profile",id=user_id))

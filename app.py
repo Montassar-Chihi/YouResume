@@ -688,6 +688,7 @@ def personal(user_id):
             else:
                   try:
                         user = User.objects(user_id=user_id,email=session["email"]).first()
+                        hackish_feature = user.first_name
                         first_name = request.form.get("first_name")
                         last_name = request.form.get("last_name")
                         email = request.form.get("email")
@@ -724,6 +725,7 @@ def personal(user_id):
       if request.method == "PUT":
             try:
                   user = User.objects(user_id=user_id,email=session["email"]).first()
+                  hackish_feature = user.first_name
                   first_name = request.json.get("first_name")
                   last_name = request.json.get("last_name")
                   email = request.json.get("email")
@@ -767,7 +769,7 @@ def personal(user_id):
             # For simple users
             return render_template("personal.html",user=user)
       except:
-            return make_response('Page you asked for is Not Found! If you are manually inserting links please verify',404)
+            return make_response("You are trying to update a different profile!!!!!",405)
 
 @app.route("/profile/<user_id>/skill/<skill_id>" , methods = ["DELETE","PUT","GET","POST"])
 def skill(user_id,skill_id):

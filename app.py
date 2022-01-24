@@ -277,14 +277,8 @@ def portfolio(user_id,portfolio_id):
                   output = []
                   output.append({
                         'name' : user.first_name,
-                        'last_name' : user.last_name,
-                        'email' : user.email,
-                        'profession' : user.profession,
-                        'linkedin' : user.linkedin,
-                        'github' : user.github,
-                        'description' : user.description,
-                        'location' : user.location
-                  })
+                        'last_name' : user.last_name
+                         })
                   output.append({
                         'portfolio_id': portfolio.portfolio_id,
                         'name' : portfolio.name,
@@ -346,13 +340,7 @@ def add_portfolio(user_id):
                   output = []
                   output.append({
                         'name' : user.first_name,
-                        'last_name' : user.last_name,
-                        'email' : user.email,
-                        'profession' : user.profession,
-                        'linkedin' : user.linkedin,
-                        'github' : user.github,
-                        'description' : user.description,
-                        'location' : user.location
+                        'last_name' : user.last_name
                   })
                   for portfolios in portfolio:
                         output.append({
@@ -436,14 +424,8 @@ def profession(user_id,profession_id):
                   output = []
                   output.append({
                         'name' : user.first_name,
-                        'last_name' : user.last_name,
-                        'email' : user.email,
-                        'profession' : user.profession,
-                        'linkedin' : user.linkedin,
-                        'github' : user.github,
-                        'description' : user.description,
-                        'location' : user.location
-                  })
+                        'last_name' : user.last_name
+                         })
                   output.append({
                         'profession_id': profession.profession_id,
                         'title' : profession.title,
@@ -514,13 +496,7 @@ def add_profession(user_id):
                   output = []
                   output.append({
                         'name' : user.first_name,
-                        'last_name' : user.last_name,
-                        'email' : user.email,
-                        'profession' : user.profession,
-                        'linkedin' : user.linkedin,
-                        'github' : user.github,
-                        'description' : user.description,
-                        'location' : user.location
+                        'last_name' : user.last_name
                   })
                   for professions in profession:
                         output.append({
@@ -600,14 +576,8 @@ def education(user_id,education_id):
                   output = []
                   output.append({
                         'name' : user.first_name,
-                        'last_name' : user.last_name,
-                        'email' : user.email,
-                        'profession' : user.profession,
-                        'linkedin' : user.linkedin,
-                        'github' : user.github,
-                        'description' : user.description,
-                        'location' : user.location
-                  })
+                        'last_name' : user.last_name
+                         })
                   output.append({
                         'education_id': education.education_id,
                         'place' : education.place,
@@ -671,13 +641,7 @@ def add_education(user_id):
                   output = []
                   output.append({
                         'name' : user.first_name,
-                        'last_name' : user.last_name,
-                        'email' : user.email,
-                        'profession' : user.profession,
-                        'linkedin' : user.linkedin,
-                        'github' : user.github,
-                        'description' : user.description,
-                        'location' : user.location
+                        'last_name' : user.last_name
                   })
                   for educations in education:
                         output.append({
@@ -849,14 +813,8 @@ def skill(user_id,skill_id):
                   output = []
                   output.append({
                         'name' : user.first_name,
-                        'last_name' : user.last_name,
-                        'email' : user.email,
-                        'profession' : user.profession,
-                        'linkedin' : user.linkedin,
-                        'github' : user.github,
-                        'description' : user.description,
-                        'location' : user.location
-                  })
+                        'last_name' : user.last_name
+                         })
                   output.append({
                         'skill_id': skill.skill_id,
                         'name' : skill.name,
@@ -915,13 +873,7 @@ def add_skill(user_id):
                   output = []
                   output.append({
                         'name' : user.first_name,
-                        'last_name' : user.last_name,
-                        'email' : user.email,
-                        'profession' : user.profession,
-                        'linkedin' : user.linkedin,
-                        'github' : user.github,
-                        'description' : user.description,
-                        'location' : user.location
+                        'last_name' : user.last_name
                   })
                   for skills in skill:
                         output.append({

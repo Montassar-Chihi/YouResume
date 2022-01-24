@@ -706,7 +706,7 @@ def personal(user_id):
                               filename = file.filename
                               file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
                               picture = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-                        User.objects(user_id=user_id).update(first_name = first_name,last_name = last_name,email = email,
+                              User.objects(user_id=user_id).update(first_name = first_name,last_name = last_name,email = email,
                                                               password= generate_password_hash(password),picture = picture,profession = profession,
                                                               linkedin = linkedin,github = github,description=description,
                                                               location=location)
@@ -950,4 +950,4 @@ def user(id):
 
 
 if __name__ == "__main__":
-      app.run(debug=True)
+      app.run()

@@ -686,39 +686,44 @@ def personal(user_id):
             if request.headers.get("User-Agent") == "PostmanRuntime/7.29.0":
                   return make_response("Method Not alowed !!", 405)
             else:
-                  first_name = request.form.get("first_name")
-                  last_name = request.form.get("last_name")
-                  email = request.form.get("email")
-                  password = request.form.get("password")
-                  profession = request.form.get("profession")
-                  linkedin = request.form.get("linkedin")
-                  github = request.form.get("github")
-                  description = request.form.get("description")
-                  location = request.form.get("location")
-                  if 'picture' in request.files:
-                        file = request.files['picture']
-                        if file.filename == '':
-                              User.objects(user_id=user_id).update(first_name = first_name,last_name = last_name,email = email,
-                                                              password= generate_password_hash(password),profession = profession,
-                                                              linkedin = linkedin,github = github,description=description,
-                                                              location=location)
+                  try:
+                        user = User.objects(user_id=user_id,email=session["email"]).first()
+                        first_name = request.form.get("first_name")
+                        last_name = request.form.get("last_name")
+                        email = request.form.get("email")
+                        password = request.form.get("password")
+                        profession = request.form.get("profession")
+                        linkedin = request.form.get("linkedin")
+                        github = request.form.get("github")
+                        description = request.form.get("description")
+                        location = request.form.get("location")
+                        if 'picture' in request.files:
+                              file = request.files['picture']
+                              if file.filename == '':
+                                    User.objects(user_id=user_id).update(first_name = first_name,last_name = last_name,email = email,
+                                                                  password= generate_password_hash(password),profession = profession,
+                                                                  linkedin = linkedin,github = github,description=description,
+                                                                  location=location)
+                              else:
+                                    filename = file.filename+str(user_id)
+                                    file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                                    picture = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                                    User.objects(user_id=user_id).update(first_name = first_name,last_name = last_name,email = email,
+                                                                  password= generate_password_hash(password),picture = picture,profession = profession,
+                                                                  linkedin = linkedin,github = github,description=description,
+                                                                  location=location)
                         else:
-                              filename = file.filename
-                              file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-                              picture = os.path.join(app.config['UPLOAD_FOLDER'], filename)
                               User.objects(user_id=user_id).update(first_name = first_name,last_name = last_name,email = email,
-                                                              password= generate_password_hash(password),picture = picture,profession = profession,
-                                                              linkedin = linkedin,github = github,description=description,
-                                                              location=location)
-                  else:
-                        User.objects(user_id=user_id).update(first_name = first_name,last_name = last_name,email = email,
-                                                              password= generate_password_hash(password),profession = profession,
-                                                              linkedin = linkedin,github = github,description=description,
-                                                              location=location)
-                  return redirect(url_for("profile",id=user_id))
+                                                                  password= generate_password_hash(password),profession = profession,
+                                                                  linkedin = linkedin,github = github,description=description,
+                                                                  location=location)
+                        return redirect(url_for("profile",id=user_id))
+                  except:
+                        return make_response("You are trying to update a different profile!!!!!",405)
       
       if request.method == "PUT":
-            if request.headers.get("User-Agent") == "PostmanRuntime/7.29.0":
+            try:
+                  user = User.objects(user_id=user_id,email=session["email"]).first()
                   first_name = request.json.get("first_name")
                   last_name = request.json.get("last_name")
                   email = request.json.get("email")
@@ -726,18 +731,20 @@ def personal(user_id):
                   profession = request.json.get("profession")
                   linkedin = request.json.get("linkedin")
                   github = request.json.get("github")
-                  description = request.json.get("description")
+                  description = request.json.get("description")                        
                   location = request.json.get("location")
                   if password != None:
                         User.objects(user_id=user_id).update(first_name = first_name,last_name = last_name,email = email,
-                                                             password= generate_password_hash(password),profession = profession,
-                                                              linkedin = linkedin,github = github,description=description,
-                                                              location=location)
+                                                            password= generate_password_hash(password),profession = profession,
+                                                            linkedin = linkedin,github = github,description=description,
+                                                            location=location)
                   else:
                         User.objects(user_id=user_id).update(first_name = first_name,last_name = last_name,email = email,
-                                                             profession = profession,linkedin = linkedin,github = github,
-                                                             description=description,location=location)
+                                                            profession = profession,linkedin = linkedin,github = github,
+                                                            description=description,location=location)
                   return ("user updated",200)
+            except:
+                  return ("Please verify your profile id",405)
             
       try:
             user = User.objects(user_id=user_id,email=session["email"]).first()

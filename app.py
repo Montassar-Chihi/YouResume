@@ -748,6 +748,7 @@ def personal(user_id):
             
       try:
             user = User.objects(user_id=user_id,email=session["email"]).first()
+            hackish_feature = user.first_name
             # For Postman Tests
             if request.headers.get("User-Agent") == "PostmanRuntime/7.29.0":
                   output = []

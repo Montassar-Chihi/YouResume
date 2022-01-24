@@ -692,6 +692,7 @@ def personal(user_id):
                         first_name = request.form.get("first_name")
                         last_name = request.form.get("last_name")
                         email = request.form.get("email")
+                        session["email"] = email
                         password = request.form.get("password")
                         profession = request.form.get("profession")
                         linkedin = request.form.get("linkedin")
@@ -720,7 +721,7 @@ def personal(user_id):
                                                                   location=location)
                         return redirect(url_for("profile",id=user_id))
                   except:
-                        return make_response("You are trying to update a different profile!!!!!",405)
+                        return make_response("You are trying to update a different profile!!!!!",403)
       
       if request.method == "PUT":
             try:
@@ -746,7 +747,7 @@ def personal(user_id):
                                                             description=description,location=location)
                   return ("user updated",200)
             except:
-                  return ("Please verify your profile id",405)
+                  return ("Please verify your profile id",403)
             
       try:
             user = User.objects(user_id=user_id,email=session["email"]).first()
@@ -769,7 +770,7 @@ def personal(user_id):
             # For simple users
             return render_template("personal.html",user=user)
       except:
-            return make_response("You are trying to update a different profile!!!!!",405)
+            return make_response("You are trying to update a different profile!!!!!",403)
 
 @app.route("/profile/<user_id>/skill/<skill_id>" , methods = ["DELETE","PUT","GET","POST"])
 def skill(user_id,skill_id):

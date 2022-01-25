@@ -636,7 +636,7 @@ def add_education(user_id):
                   return redirect(url_for("index"))
             
       if current_user_id != user_id:
-            return make_response("Token is not valid!"+current_user_id,403)
+            return make_response("Token is not valid!"+str(current_user_id),403)
           
       if request.method == "POST":
             if "add_project" in request.form:

@@ -712,7 +712,7 @@ def personal(user_id):
                                                                   location=location)
                               else:
                                     filenamelist = file.filename.split(".")
-                                    filename = filenamelist[0] + str(user_id) + filenamelist[1]
+                                    filename = filenamelist[0] + str(user_id) + "." + filenamelist[1]
                                     file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
                                     picture = os.path.join(app.config['UPLOAD_FOLDER'], filename)
                                     User.objects(user_id=user_id).update(first_name = first_name,last_name = last_name,email = email,

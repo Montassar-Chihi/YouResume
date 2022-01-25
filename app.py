@@ -548,7 +548,7 @@ def education(user_id,education_id):
                         Education.objects(education_id=education_id).delete()
                         return redirect(url_for("profile",id=user_id))
                   if "update" in request.form :
-                        place = request.form.get("palce")
+                        place = request.form.get("place")
                         started_at = request.form.get("started")
                         finished_at = request.form.get("finished")
                         Education.objects(education_id=education_id).update(place = place,started_at = started_at,finished_at = finished_at)

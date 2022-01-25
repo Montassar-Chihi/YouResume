@@ -645,6 +645,7 @@ def add_education(user_id):
                   })
                   for educations in education:
                         output.append({
+                              'education_id' : educations.education_id,
                               'place' : educations.place,
                               'started_at' : educations.started_at,
                               'finished_at' : educations.finished_at

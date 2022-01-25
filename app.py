@@ -711,7 +711,8 @@ def personal(user_id):
                                                                   linkedin = linkedin,github = github,description=description,
                                                                   location=location)
                               else:
-                                    filename = file.filename+str(user_id)
+                                    filenamelist = file.filename.split(".")
+                                    filename = filenamelist[0] + str(user_id) + filenamelist[1]
                                     file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
                                     picture = os.path.join(app.config['UPLOAD_FOLDER'], filename)
                                     User.objects(user_id=user_id).update(first_name = first_name,last_name = last_name,email = email,

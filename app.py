@@ -627,6 +627,8 @@ def add_education(user_id):
             # decoding the payload to fetch the stored details
             data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=["HS256"]) 
             current_user_id = int(data["user_id"])
+            if current_user_id != user_id:
+                  return make_response("Token is not valid!"+str(current_user_id),403)
       except:
             if request.headers.get("User-Agent") == "PostmanRuntime/7.29.0":
                   return make_response(jsonify({'message' : 'Token is invalid !!'}), 403)
@@ -634,9 +636,6 @@ def add_education(user_id):
                   session["login_error"] = 'Please Log In with the right information to use the website' 
                   session["register_error"] = 'Please Sign UP with the right information to use the website' 
                   return redirect(url_for("index"))
-            
-      if current_user_id != user_id:
-            return make_response("Token is not valid!"+str(current_user_id),403)
           
       if request.method == "POST":
             if "add_project" in request.form:

@@ -92,7 +92,7 @@ def index():
                                     'exp' : datetime.utcnow() + timedelta(minutes = 300)
                               }, app.config['SECRET_KEY'], algorithm="HS256")
                               if request.headers.get("User-Agent") == "PostmanRuntime/7.29.0":
-                                    return make_response(jsonify({'token' : token}), 200)
+                                    return make_response(jsonify({'token' : token,'user_id':id}), 200)
                               return redirect(url_for("profile",id=id))
                         else:
                               if request.headers.get("User-Agent") == "PostmanRuntime/7.29.0":
@@ -117,7 +117,7 @@ def index():
                               'exp' : datetime.utcnow() + timedelta(minutes = 300)
                         }, app.config['SECRET_KEY'], algorithm="HS256")
                         if request.headers.get("User-Agent") == "PostmanRuntime/7.29.0":
-                              return make_response(jsonify({'token' : token.decode('UTF-8')}),201)
+                              return make_response(jsonify({'token' : token,'user_id':id}),201)
                         return redirect(url_for("profile",id=id))
                   except:
                         if request.headers.get("User-Agent") == "PostmanRuntime/7.29.0":

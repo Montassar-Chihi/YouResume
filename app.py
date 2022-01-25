@@ -553,6 +553,7 @@ def education(user_id,education_id):
                   session["login_error"] = 'Please Log In with the right information to use the website' 
                   session["register_error"] = 'Please Sign UP with the right information to use the website' 
                   return redirect(url_for("index"))
+            
       if current_user_id != user_id:
             return make_response("Token is not valid!",403)
       
@@ -635,10 +636,7 @@ def add_education(user_id):
                   return redirect(url_for("index"))
             
       if current_user_id != user_id:
-            return make_response("Token is not valid!",403)
-          
-      if current_user_id != user_id:
-            return make_response("Token is not valid!",403)
+            return make_response("Token is not valid!"+current_user_id,403)
           
       if request.method == "POST":
             if "add_project" in request.form:

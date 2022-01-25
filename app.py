@@ -241,7 +241,13 @@ def portfolio(user_id,portfolio_id):
                   session["login_error"] = 'Please Log In with the right information to use the website' 
                   session["register_error"] = 'Please Sign UP with the right information to use the website' 
                   return redirect(url_for("index"))
-            
+      
+      
+      user = User.objects(user_id=user_id,email=session["email"]).first()
+      portfolio = Portfolio.objects(portfolio_id=portfolio_id).first()
+      if portfolio == None or portfolio.user_id != user.user_id:
+            return make_response("Please verify the URL!!",404)
+          
       if request.method =="POST":
             if request.headers.get("User-Agent") == "PostmanRuntime/7.29.0":
                   return make_response("Method Not alowed !!", 405)
@@ -269,10 +275,6 @@ def portfolio(user_id,portfolio_id):
       try:     
             session["delup_portfolio"] = True
             session["add_portfolio"]=False
-            user = User.objects(user_id=user_id,email=session["email"]).first()
-            portfolio = Portfolio.objects(portfolio_id=portfolio_id).first()
-            if portfolio == None:
-                  return make_response("Portfolio index is incorrect! please verify!",404)
             if request.headers.get("User-Agent") == "PostmanRuntime/7.29.0":
                   output = []
                   output.append({
@@ -379,7 +381,12 @@ def profession(user_id,profession_id):
                   session["login_error"] = 'Please Log In with the right information to use the website' 
                   session["register_error"] = 'Please Sign UP with the right information to use the website' 
                   return redirect(url_for("index"))
-            
+      
+      
+      user = User.objects(user_id=user_id,email=session["email"]).first()
+      profession = Profession.objects(profession_id=profession_id).first()
+      if profession == None or profession.user_id != user.user_id:
+            return make_response("Please verify the URL!!",404)
             
       if request.method =="POST":
             if request.headers.get("User-Agent") == "PostmanRuntime/7.29.0":
@@ -398,6 +405,7 @@ def profession(user_id,profession_id):
                         Profession.objects(profession_id=profession_id).update(title = title,company = company,description = description,
                                                                    started_at = started_at,finished_at = finished_at,place = place)
                         return redirect(url_for("profile",id=user_id))
+                  
       if request.method == "DELETE":
             Profession.objects(profession_id=profession_id).delete()
             return make_response('Profession Deleted', 200)
@@ -416,10 +424,6 @@ def profession(user_id,profession_id):
       try:
             session["delup_profession"] = True
             session["add_profession"]=False
-            user = User.objects(user_id=user_id,email=session["email"]).first()
-            profession = Profession.objects(profession_id=profession_id).first()
-            if profession == None:
-                  return make_response("Profession index is incorrect! please verify!",404)
             if request.headers.get("User-Agent") == "PostmanRuntime/7.29.0":
                   output = []
                   output.append({
@@ -539,7 +543,12 @@ def education(user_id,education_id):
                   session["login_error"] = 'Please Log In with the right information to use the website' 
                   session["register_error"] = 'Please Sign UP with the right information to use the website' 
                   return redirect(url_for("index"))
-            
+      
+      user = User.objects(user_id=user_id,email=session["email"]).first()
+      education = Education.objects(education_id=education_id).first()
+      if education == None or education.user_id != user.user_id:
+            return make_response("Please verify the URL!!",404)
+      
       if request.method =="POST":
             if request.headers.get("User-Agent") == "PostmanRuntime/7.29.0":
                   return make_response("Method Not alowed !!", 405)
@@ -567,10 +576,6 @@ def education(user_id,education_id):
       try:
             session["delup_education"] = True
             session["add_education"] = False
-            user = User.objects(user_id=user_id,email=session["email"]).first()
-            education = Education.objects(education_id=education_id).first()
-            if education == None:
-                  return make_response("Education index is incorrect! please verify!",404)
             # For Postman Tests
             if request.headers.get("User-Agent") == "PostmanRuntime/7.29.0":
                   output = []
@@ -808,7 +813,13 @@ def skill(user_id,skill_id):
                   session["login_error"] = 'Please Log In with the right information to use the website' 
                   session["register_error"] = 'Please Sign UP with the right information to use the website' 
                   return redirect(url_for("index"))
-            
+      
+      
+      user = User.objects(user_id=user_id,email=session["email"]).first()
+      skill = Skill.objects(skill_id=skill_id).first()
+      if skill == None or skill.user_id != user.user_id:
+            return make_response("Please verify the URL!!",404)
+           
       if request.method =="POST":
             if request.headers.get("User-Agent") == "PostmanRuntime/7.29.0":
                   return make_response("Method Not alowed !!", 405)
@@ -835,10 +846,6 @@ def skill(user_id,skill_id):
       try:
             session["delup_skill"] = True
             session["add_skill"] = False
-            user = User.objects(user_id=user_id,email=session["email"]).first()
-            skill = Skill.objects(skill_id=skill_id).first()
-            if skill == None:
-                  return make_response("Skill index is incorrect! please verify!",404)
             if request.headers.get("User-Agent") == "PostmanRuntime/7.29.0":
                   output = []
                   output.append({

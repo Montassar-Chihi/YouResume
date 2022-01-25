@@ -627,7 +627,7 @@ def add_education(user_id):
             # decoding the payload to fetch the stored details
             data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=["HS256"]) 
             current_user_id = int(data["user_id"])
-            if current_user_id != user_id:
+            if current_user_id != int(user_id):
                   return make_response("Token is not valid!"+str(current_user_id),403)
       except:
             if request.headers.get("User-Agent") == "PostmanRuntime/7.29.0":

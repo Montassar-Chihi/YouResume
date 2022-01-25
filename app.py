@@ -156,7 +156,9 @@ def profile(id):
       try:
             # decoding the payload to fetch the stored details
             data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=["HS256"]) 
-            current_user_id = User.objects(user_id = data["user_id"],email = session["email"]).only('user_id').first()
+            current_user_id = int(data["user_id"])
+            if current_user_id != int(id):
+                  return make_response("Token is not valid! ",403)
       except:
             if request.headers.get("User-Agent") == "PostmanRuntime/7.29.0":
                   return make_response(jsonify({'message' : 'Token is invalid !!'}), 403)
@@ -233,7 +235,9 @@ def portfolio(user_id,portfolio_id):
       try:
             # decoding the payload to fetch the stored details
             data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=["HS256"]) 
-            current_user_id = User.objects(user_id = data["user_id"],email = session["email"]).only('user_id').first()
+            current_user_id = int(data["user_id"])
+            if current_user_id != int(user_id):
+                  return make_response("Token is not valid! ",403)
       except:
             if request.headers.get("User-Agent") == "PostmanRuntime/7.29.0":
                   return make_response(jsonify({'message' : 'Token is invalid !!'}), 403)
@@ -241,9 +245,6 @@ def portfolio(user_id,portfolio_id):
                   session["login_error"] = 'Please Log In with the right information to use the website' 
                   session["register_error"] = 'Please Sign UP with the right information to use the website' 
                   return redirect(url_for("index"))
-      
-      if current_user_id != user_id:
-            return make_response("Token is not valid!",403)
       
       user = User.objects(user_id=user_id,email=session["email"]).first()
       portfolio = Portfolio.objects(portfolio_id=portfolio_id).first()
@@ -312,7 +313,9 @@ def add_portfolio(user_id):
       try:
             # decoding the payload to fetch the stored details
             data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=["HS256"]) 
-            current_user_id = User.objects(user_id = data["user_id"],email = session["email"]).only('user_id').first()
+            current_user_id = int(data["user_id"])
+            if current_user_id != int(user_id):
+                  return make_response("Token is not valid! ",403)
       except:
             if request.headers.get("User-Agent") == "PostmanRuntime/7.29.0":
                   return make_response(jsonify({'message' : 'Token is invalid !!'}), 403)
@@ -321,10 +324,7 @@ def add_portfolio(user_id):
                   session["register_error"] = 'Please Sign UP with the right information to use the website' 
                   return redirect(url_for("index"))
             
-            
-      if current_user_id != user_id:
-            return make_response("Token is not valid!",403)
-          
+                
       if request.method == "POST":
             if "add" in request.form:
                   name = request.form.get("name")
@@ -378,7 +378,9 @@ def profession(user_id,profession_id):
       try:
             # decoding the payload to fetch the stored details
             data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=["HS256"]) 
-            current_user_id = User.objects(user_id = data["user_id"],email = session["email"]).only('user_id').first()
+            current_user_id = int(data["user_id"])
+            if current_user_id != int(user_id):
+                  return make_response("Token is not valid! ",403)
       except:
             if request.headers.get("User-Agent") == "PostmanRuntime/7.29.0":
                   return make_response(jsonify({'message' : 'Token is invalid !!'}), 403)
@@ -386,9 +388,6 @@ def profession(user_id,profession_id):
                   session["login_error"] = 'Please Log In with the right information to use the website' 
                   session["register_error"] = 'Please Sign UP with the right information to use the website' 
                   return redirect(url_for("index"))
-      
-      if current_user_id != user_id:
-            return make_response("Token is not valid!",403)
       
       user = User.objects(user_id=user_id,email=session["email"]).first()
       profession = Profession.objects(profession_id=profession_id).first()
@@ -468,7 +467,9 @@ def add_profession(user_id):
       try:
             # decoding the payload to fetch the stored details
             data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=["HS256"]) 
-            current_user_id = User.objects(user_id = data["user_id"],email = session["email"]).only('user_id').first()
+            current_user_id = int(data["user_id"])
+            if current_user_id != int(user_id):
+                  return make_response("Token is not valid! ",403)
       except:
             if request.headers.get("User-Agent") == "PostmanRuntime/7.29.0":
                   return make_response(jsonify({'message' : 'Token is invalid !!'}), 403)
@@ -477,10 +478,7 @@ def add_profession(user_id):
                   session["register_error"] = 'Please Sign UP with the right information to use the website' 
                   return redirect(url_for("index"))
             
-            
-      if current_user_id != user_id:
-            return make_response("Token is not valid!",403)
-          
+                
       if request.method == "POST":
             if "add" in request.form:
                   title = request.form.get("title")
@@ -545,7 +543,9 @@ def education(user_id,education_id):
       try:
             # decoding the payload to fetch the stored details
             data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=["HS256"]) 
-            current_user_id = User.objects(user_id = data["user_id"],email = session["email"]).only('user_id').first()
+            current_user_id = int(data["user_id"])
+            if current_user_id != int(user_id):
+                  return make_response("Token is not valid! ",403)
       except:
             if request.headers.get("User-Agent") == "PostmanRuntime/7.29.0":
                   return make_response(jsonify({'message' : 'Token is invalid !!'}), 403)
@@ -554,9 +554,6 @@ def education(user_id,education_id):
                   session["register_error"] = 'Please Sign UP with the right information to use the website' 
                   return redirect(url_for("index"))
            
-      if current_user_id != user_id:
-            return make_response("Token is not valid!",403)
-      
       user = User.objects(user_id=user_id,email=session["email"]).first()
       education = Education.objects(education_id=education_id).first()
       if education == None or education.user_id != user.user_id:
@@ -628,7 +625,7 @@ def add_education(user_id):
             data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=["HS256"]) 
             current_user_id = int(data["user_id"])
             if current_user_id != int(user_id):
-                  return make_response("Token is not valid!"+str(current_user_id),403)
+                  return make_response("Token is not valid! ",403)
       except:
             if request.headers.get("User-Agent") == "PostmanRuntime/7.29.0":
                   return make_response(jsonify({'message' : 'Token is invalid !!'}), 403)
@@ -692,7 +689,9 @@ def personal(user_id):
       try:
             # decoding the payload to fetch the stored details
             data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=["HS256"]) 
-            current_user_id = User.objects(user_id = data["user_id"],email = session["email"]).only('user_id').first()
+            current_user_id = int(data["user_id"])
+            if current_user_id != int(user_id):
+                  return make_response("Token is not valid! ",403)
       except:
             if request.headers.get("User-Agent") == "PostmanRuntime/7.29.0":
                   return make_response(jsonify({'message' : 'Token is invalid !!'}), 403)
@@ -700,10 +699,7 @@ def personal(user_id):
                   session["login_error"] = 'Please Log In with the right information to use the website' 
                   session["register_error"] = 'Please Sign UP with the right information to use the website' 
                   return redirect(url_for("index"))
-            
-      if current_user_id != user_id:
-            return make_response("Token is not valid!",403)
-            
+                  
       if request.method =="POST":
             if request.headers.get("User-Agent") == "PostmanRuntime/7.29.0":
                   return make_response("Method Not alowed !!", 405)
@@ -821,7 +817,9 @@ def skill(user_id,skill_id):
       try:
             # decoding the payload to fetch the stored details
             data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=["HS256"]) 
-            current_user_id = User.objects(user_id = data["user_id"],email = session["email"]).only('user_id').first()
+            current_user_id = int(data["user_id"])
+            if current_user_id != int(user_id):
+                  return make_response("Token is not valid! ",403)
       except:
             if request.headers.get("User-Agent") == "PostmanRuntime/7.29.0":
                   return make_response(jsonify({'message' : 'Token is invalid !!'}), 403)
@@ -829,9 +827,6 @@ def skill(user_id,skill_id):
                   session["login_error"] = 'Please Log In with the right information to use the website' 
                   session["register_error"] = 'Please Sign UP with the right information to use the website' 
                   return redirect(url_for("index"))
-      
-      if current_user_id != user_id:
-            return make_response("Token is not valid!",403)
       
       user = User.objects(user_id=user_id,email=session["email"]).first()
       skill = Skill.objects(skill_id=skill_id).first()
@@ -898,7 +893,9 @@ def add_skill(user_id):
       try:
             # decoding the payload to fetch the stored details
             data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=["HS256"]) 
-            current_user_id = User.objects(user_id = data["user_id"],email = session["email"]).only('user_id').first()
+            current_user_id = int(data["user_id"])
+            if current_user_id != int(user_id):
+                  return make_response("Token is not valid! ",403)
       except:
             if request.headers.get("User-Agent") == "PostmanRuntime/7.29.0":
                   return make_response(jsonify({'message' : 'Token is invalid !!'}), 403)

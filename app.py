@@ -556,7 +556,7 @@ def education(user_id,education_id):
            
       user = User.objects(user_id=user_id,email=session["email"]).first()
       education = Education.objects(education_id=education_id).first()
-      if education == None or education.user_id != user.user_id:
+      if education == None or int(education.user_id )!= int(user.user_id):
             return make_response("Please verify the URL!!",404)
       
       if request.method =="POST":

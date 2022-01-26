@@ -646,29 +646,28 @@ def add_education(user_id):
             finished_at = request.json.get("finished")
             Education(place=place,started_at=started_at,finished_at=finished_at,user_id=[user_id]).save()
             return ("education created",201)
-            
-      try:
+      try:    
             session["delup_education"] = False
             session["add_education"] = True
             user = User.objects(user_id=user_id,email=session["email"]).first()
             education = Education.objects(user_id=[user_id])
             # For Postman Tests
             if request.headers.get("User-Agent") == "PostmanRuntime/7.29.0":
-                  output = []
-                  output.append({
-                        'name' : user.first_name,
-                        'last_name' : user.last_name
-                  })
-                  for educations in education:
+                        output = []
                         output.append({
-                              'education_id' : educations.education_id,
-                              'place' : educations.place,
-                              'started_at' : educations.started_at,
-                              'finished_at' : educations.finished_at
+                              'name' : user.first_name,
+                              'last_name' : user.last_name
                         })
-                  return make_response(jsonify({'data': output}),200)
-            # For simple users
-            return render_template("education.html",user=user,education=education)
+                        for educations in education:
+                              output.append({
+                                    'education_id' : educations.education_id,
+                                    'place' : educations.place,
+                                    'started_at' : educations.started_at,
+                                    'finished_at' : educations.finished_at
+                              })
+                        return make_response(jsonify({'data': output}),200)
+                  # For simple users
+            return render_template("education.html",education=education,user=user)
       except:
             return make_response('Page you asked for is Not Found! If you are manually inserting links please verify',404)
 
@@ -994,4 +993,4 @@ def user(id):
 
 
 if __name__ == "__main__":
-      app.run()
+      app.run(debug=True)

@@ -17,22 +17,23 @@
 <body>
     <div>
         <a href="/logout"><i class="fa fa-sign-out" style="position: relative;right: -85%;"></i></a>
-        <a href='personal'><header class="row">
-            <div class="card column">
-                <img src="{%block profile_image%}{%endblock%}" alt="{%block altname%} {%endblock%}" >
-                <h1>{%block name%}{%endblock%}</h1>
-                <p class="title">{%block profession%}{%endblock%}</p>
-                <a href = {%block email%}{%endblock%} target="_blank"><i class="fa fa-envelope-open"></i></a>
-                <a href={%block linkedin%}{%endblock%} target="_blank"><i class="fa fa-linkedin"></i></a>
-                <a href={%block github%}{%endblock%} target="_blank"><i class="fa fa-github"></i></a>
-            </div>
-            <div class="w3-panel w3-card-4 w3-light-grey column" >
-                <p class=" w3-large w3-serif">
-                    <i class="fa fa-quote-right w3-xxlarge w3-text-red"></i><br>
-                    {%block profile_description%}{%endblock%}
-                </p>
-            </div>
-        </header></a>
+        <a href='personal'>
+            <header class="row">
+                <div class="card column">
+                    <img src="{%block profile_image%}{%endblock%}" alt="{%block altname%} {%endblock%}" >
+                    <h1>{%block name%}{%endblock%}</h1>
+                    <p class="title">{%block profession%}{%endblock%}</p>
+                    <a href = {%block email%}{%endblock%} target="_blank"><i class="fa fa-envelope-open"></i></a>
+                    <a href={%block linkedin%}{%endblock%} target="_blank"><i class="fa fa-linkedin"></i></a>
+                    <a href={%block github%}{%endblock%} target="_blank"><i class="fa fa-github"></i></a>
+                </div>
+                <div class="w3-panel w3-card-4 w3-light-grey column" >
+                    <p class=" w3-large w3-serif">
+                        <i class="fa fa-quote-right w3-xxlarge w3-text-red"></i><br>
+                        {%block profile_description%}{%endblock%}
+                    </p>
+                </div>
+            </header></a>
 
         <div class="eduwork row parallax" >
             <h1 style=" margin-left: 5em;"><a href='education' style= "text-decoration: none;font-size: 170% ;margin: 1em;color: rgba(2, 0, 36, 1);">Education</a></h1>

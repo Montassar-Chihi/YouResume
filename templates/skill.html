@@ -8,7 +8,7 @@
 {%block name%}
     {{user.first_name}} {{user.last_name}}
 {%endblock%}
-{%block profile_image%}{{"/"+user.picture}}{%endblock%}
+{%block profile_image%}/{{user.picture}}{%endblock%}
 {%block profession%} 
     {{user.profession}}
 {%endblock%}

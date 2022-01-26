@@ -247,7 +247,7 @@ def portfolio(user_id,portfolio_id):
                   return redirect(url_for("index"))
       
       user = User.objects(user_id=user_id,email=session["email"]).first()
-      portfolio = Portfolio.objects(portfolio_id=portfolio_id,user=[user_id]).first()
+      portfolio = Portfolio.objects(portfolio_id=portfolio_id,user_id=[user_id]).first()
       if portfolio == None :
             return make_response("Please verify the URL!!",404)
           
@@ -390,7 +390,7 @@ def profession(user_id,profession_id):
                   return redirect(url_for("index"))
       
       user = User.objects(user_id=user_id,email=session["email"]).first()
-      profession = Profession.objects(profession_id=profession_id,user=[user_id]).first()
+      profession = Profession.objects(profession_id=profession_id,user_id=[user_id]).first()
       if profession == None :
             return make_response("Please verify the URL!!",404)
             
@@ -555,7 +555,7 @@ def education(user_id,education_id):
                   return redirect(url_for("index"))
            
       user = User.objects(user_id=user_id,email=session["email"]).first()
-      education = Education.objects(education_id=education_id,user=[user_id]).first()
+      education = Education.objects(education_id=education_id,user_id=[user_id]).first()
       if education == None :
             return make_response("Please verify the URL!!",404)
       
@@ -829,7 +829,7 @@ def skill(user_id,skill_id):
                   return redirect(url_for("index"))
       
       user = User.objects(user_id=user_id,email=session["email"]).first()
-      skill = Skill.objects(skill_id=skill_id,user=[user_id]).first()
+      skill = Skill.objects(skill_id=skill_id,user_id=[user_id]).first()
       if skill == None :
             return make_response("Please verify the URL!!",404)
            

@@ -8,12 +8,7 @@
 {%block name%}
     {{user.first_name}} {{user.last_name}}
 {%endblock%}
-{%block profile_image%}
-    {% if user.picture is not none%}
-        /{{user.picture}} 
-    {%else%}
-        /static/images/pro.png
-    {%endif%}
+{%block profile_image%}{% if user.picture is not none%}/{{user.picture}}{%else%}/static/images/pro.png{%endif%}
 {%endblock%}
 {%block profession%} 
     {% if user.profession is not none%}
